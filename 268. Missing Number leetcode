@@ -1,0 +1,39 @@
+268. Missing Number
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+Example 1:
+
+Input: nums = [3,0,1]
+
+Output: 2
+____________________________________-------------------------------------________________________________
+// xor method
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        // xor method
+        // xor for nums
+        int ans=0;
+        for(int i=0;i<nums.size();i++ ){
+            ans=ans^nums[i];
+        }
+
+        // xor for range 
+        for(int i =0;i<=nums.size();i++){
+            ans=ans^i;
+        }
+        return ans;
+    }
+};
+_________________________________________________________
+//brute force method
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]!=i) return i;
+        }
+
+        return nums.size();
+    }
+};
